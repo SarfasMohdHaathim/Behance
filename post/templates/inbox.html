@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
+    <link rel="stylesheet" href="{% static '/css/inbox.css' %}">
+    <title>Behance :: Inbox</title>
+</head>
+<body>
+    {% include 'header.html' %}
+    <section>
+        <div class="messaging-box">
+            
+            <!-- Left SIde Messaging Box -->
+            <div class="messaging-box-left">
+
+                <div class="messaging-box-left-headerbar">
+                    <p><i class="fas fa-inbox fa-sm"></i>Inbox</p>
+                    <button><i class="fas fa-plus fa-sm"></i>Compose</button>
+                </div>
+                {% if msg %}
+                <div class="messaging-box-left-userlist">
+                    {% for msg in msg %}
+                    <div class="user">
+                        <div class="user-details">
+                            <img src="/images/users/jordan-dice-dp.jpg" alt="">
+                            <p>Jordan Dice</p>
+                        </div>
+                        <span><a href="{% url 'message' msg.id %}">View Message</a></span>
+                    </div>
+                    {% endfor %}
+                        </div>
+                        {% endif %}
+            </div>
+
+
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

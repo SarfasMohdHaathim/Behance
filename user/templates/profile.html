@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
+    <link rel="stylesheet" href="{% static '/css/profile.css' %}">
+    <title>Richard Hendrik - Behance</title>
+</head>
+<body>
+     <!-- Header Bar Starts Here -->
+     <header>
+        <div class="left-nav">
+            <a href="./"><img src="/images/behance logo.svg" alt=""></a>
+            <ul>
+                <li>For You</li>
+                <li><a href="{% url 'gallary' %}">Discover</a></li>
+                <li>Livestreams</li>
+                <li>Jobs</li>
+            </ul>
+        </div>
+        <div class="input-container">
+            <input type="text" name="" id="" placeholder="Search..">
+            <img src="/images/search-icon.png" alt="">
+        </div>
+        <div class="right-nav">
+            <button>Share Your Work</button>
+            <a href="/inbox.html"><i class="fas fa-envelope"></i></a>
+            <i class="fas fa-bell"></i>
+            <a href="/profile.html">
+            <div class="profile">
+                <img src="/images/users/user1.jpg" alt="">
+            </div></a>
+            <img src="/images/adobe-logo.png" alt="">
+        </div>
+    </header>
+        <!-- Header Bar Ends Here -->   
+
+    <section>
+        <div class="banner-position">
+            {% if not profile.coverimage %}
+            <i class="fas fa-arrow-circle-down fa-3x" ></i>
+            <p>Add a Banner Image</p>
+            <small>Optimal dimensions 3200 x 410px</small>
+            {% endif %}
+        </div>
+        <div class="menu">
+            <div class="menu-options">
+                <button>Work</button>
+                <button>Livestreams</button>
+                <button>Moodboards</button>
+                <button>Appreciations</button>
+                <button>Insights</button>
+                <button>Drafts</button>
+            </div>
+            <div class="create-project">
+                <div class="add-project">
+                    <i class="fas fa-plus-circle fa-lg"></i>
+                </div>
+                <button>Create a Project</button>
+                <p>Get feedback, views, and appreciations. Public projects can be featured by our curators.</p>
+            </div>
+        </div>
+        <div class="profile-card">
+            <div class="profile-pic">
+                {% if  profile.dp %}
+                <img src="{{profile.dp.url}}" alt="">
+                {% else %}
+                <img src="/images/users/user1.jpg" alt="">
+                
+                {% endif %}
+            </div>
+            <h2>{{name}}</h2>
+            <div class="user-location">
+                <p><i class="fas fa-map-marker-alt"></i>{{profile.location}}</</p>
+            </div>
+            <a href="{% url 'addProfile' %}">
+            <button><i class="fas fa-pen"></i>Edit Your Profile</button></a>
+            <p>MEMBER SINCE:{{profile.created}}</p>
+        </div>
+
+
+
+
+    </section>
+    {% if profile.coverimage %}
+
+    <style>
+        .banner-position{
+            background-image: url('{{profile.coverimage.url}}');
+        }
+    </style>
+        {% endif %}
+
+    
+
+
+</body>
+</html>

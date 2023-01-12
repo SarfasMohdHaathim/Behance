@@ -1,0 +1,169 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/gallery-project.css' %}">
+    <title>Project Name | Behance</title>
+</head>
+<body>
+    {% include 'header.html' %}    
+    <!-- First Section Project Name User Details Starts Here-->
+    <div class="project-details-wrapper">
+        <img src="{{ posts.cover.url }}" alt="">
+        <div>
+            <p>{{title}}</p>
+            <h5><a href="/user/jordan-dice.html">{{posts.profile}}</a></h5>
+        </div>
+        <ul>
+            <li>Follow</li>
+        </ul>
+    </div>
+    
+    <!-- First Section Project Name User Details Ends Here-->
+    
+    
+    <section>
+        <!-- Project Images -->
+        <div class="project-showcase-wrapper">
+            {% if posts.img1 %}
+            <img src="{{ posts.img1.url }}" alt="">
+            {% endif %}
+            {% if posts.img2 %}
+            <img src="{{ posts.img2.url }}" alt="">
+            {% endif %}
+            {% if posts.img3 %}
+            <img src="{{ posts.img3.url }}" alt="">
+            {% endif %}
+        </div>
+
+        <!-- Project Comments, Follow, Tags Start Here-->
+        <div class="project-adds-options">
+            <div class="add-comments">
+                <form action="{% url 'postDesk' posts.id %}" method="post">
+
+                <div class="userdp-commentbox">
+                    <img src="{% static '/images/users/user1.jpg' %}" alt="">
+                        {% csrf_token %}
+                    <input  id="" placeholder="What are your thoughts on this project?" name="comment"></input>
+                </div>
+                <button type="button">Post a Comment</button>
+                <input type="submit" value="Post a Comment">
+            </form>
+            </div>
+
+            <div class="user-details">
+                <small>owner</small>
+                <div class="user">
+                    <img src="{% static '/images/users/jordan-dice-dp.jpg' %}" alt="">
+                    <div>
+                        <p><a href="/user/jordan-dice.html">{{name}}</a></p>
+                        <h5><i class="fas fa-map-marker-alt"></i>United Kingdom</h5>
+                    </div>
+                </div>
+            <button>Follow</button>
+            <button class="hire-button">Hire Us</button>
+            </div>
+            {% if  comment %}
+
+            <div class="comments-shows">
+                {% for c in comment %}
+
+                <div class="user">
+                    <img src="{% static '/images/users/jordan-dice-dp.jpg' %}" alt="">
+                    <div>
+                        <h5><a href="#">{{c.profile}}</a></h5>
+                        <p>{{c.text}}</p>
+                    </div>
+                </div>
+            {% endfor %}                
+            </div>
+            {% endif %}
+
+
+            <div class="project-tags-list">
+                <button>design</button>
+                <button>website</button>
+                <button>Web</button>
+                <button>UI UX</button>
+                <button>branding</button>
+                <button>logo</button>
+                <button>typography</button>
+                <!-- Add more buttons -->
+                <button>typography</button>
+                <button>typography</button>
+                <button>typography</button>
+                <button>typography</button>
+            </div>
+
+        </div>
+        <!--  Project Comments, Follow, Tags Ends Here -->
+    </section>
+
+    <aside class="side-box">
+        <div class="side-box-user-follow">
+            <a href="{% url 'follow' posts.profile.id %}">
+            <img src="{% static '/images/users/jordan-dice-dp.jpg' %}" alt="">
+        </a>
+            <small>Follow</small>
+        </div>
+        <a href="{% url 'createmessage' posts.profile.id %}">
+        <div class="side-box-hire-us">
+            <div>
+                <i class="fas fa-envelope"></i>
+            </div>
+            <small>Hire Us</small>
+        
+        </div>
+    </a>
+        <!-- <div class="side-box-tools"></div> -->
+        <div class="side-box-save">
+            <a href="{% url 'savepost' posts.id %}">
+            <div>
+                <i class="fas fa-folder-open"></i>
+            </div></a>
+            <small>Save</small>
+        </div>
+        <div class="side-box-appreciate">
+           <a href="{% url 'appreciate' posts.id %}">
+            <div  style="background-color: rgb(246, 170, 170);">
+                <i class="fas fa-thumbs-up"></i>
+            </div>
+        </a> 
+            <small>Appreciate</small>
+        </div>
+    </aside>
+    {% if appreciate %}   
+<style>
+   
+    .side-box-appreciate div {
+  border-radius: 50%;
+  height: 49px;
+  width: 49px;
+  border: 1px solid #0057ff;
+  background-color: #0057ff !important;
+}
+
+</style>
+{% endif %}
+<style>
+    input[type="button"]{
+        margin-top: 20px;
+    margin-left: 70%;
+    height: 33px;
+    width: 131px;
+    padding: 8px;
+    border-radius: 20px;
+    border: 1px solid #e6e6e6;
+    background-color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+    color: #191919;
+    }
+</style>
+
+</body>

@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
+    <link rel="stylesheet" href="{% static '/css/inbox.css' %}">
+    <title>Behance :: Messages</title>
+</head>
+<body>
+    {% include 'header.html' %}    <!-- Header Bar Ends Here -->
+
+    <section>
+        <div class="messaging-box">
+            {% if msg %}
+            {% for msg in msg %}
+            <!-- Right SIde Messaging Box -->
+            <div class="messaging-box-right">
+                <div class="messaging-box-right-headerbar">
+                    <a href="/inbox.html"><i class="fas fa-arrow-left fa-lg"></i></a>
+                    <img src="/images/users/jordan-dice-dp.jpg" alt="">
+                    <p>Message with <span><a href="/user/jordan-dice.html">{{msg.sender}}</a></span></p>
+                </div>
+                <div class="messaging-box-right-chats">
+                    {{msg.body}}
+                </div>
+                <div class="messaging-box-right-type-message">
+                    <form action="{% url 'replymsg' %}" method="post">
+                        {% csrf_token %}
+                    <input type="text" placeholder="Reply to {{msg.sender}}" name="msgreply">
+                    <input type="hidden" name="sender" value="{{msg.sender}}">
+                </form>
+                </div>
+            </div>
+{% endfor %}
+{% endif %}
+
+
+
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

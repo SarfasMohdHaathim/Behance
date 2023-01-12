@@ -1,0 +1,192 @@
+@import '../SCSS/mixins.scss' ;
+@import '../SCSS/variables.scss' ;
+@import '../SCSS/functions.scss' ;
+
+* {
+    @include reset;
+}
+
+header{
+    @include header;
+}
+
+section{
+    background-color: $profile-bg;
+    height: 93vh;
+    width: 100%;
+    @include flexAllCnt;
+    @include fontstack;
+    // margin-top: 10px;
+    // margin: 100px auto;
+    .messaging-box{
+        width: 900px;
+        height: 570px;
+        background-color: $bgcolor;
+        box-shadow: $shadow-lg;
+        margin: 28px auto 0px;
+        border: 2px solid $message-border;
+        border-radius: 6px;
+        display: flex;
+        &-left{
+            height: 100%;
+            width: 100%;      
+            overflow: hidden;      
+            // background-color: wheat;
+            // border-right: 3px solid $message-border;
+            &-headerbar{
+                height: 81px;
+                width: 100%;
+                border-bottom: 2px solid $message-border;
+                padding: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                p{
+                    font-size: 20px;
+                    font-weight: 400;
+                    color: $text-primary;
+                    .fas{
+                        margin-right: 7px;
+                        color: $add-clr;
+                    }
+                }
+                button{
+                    height: 32px;
+                    width: 111px;
+                    background-color: $add-clr;
+                    color: $bgcolor;
+                    font-weight: 600;
+                    font-size: 14px;
+                    border-radius: 20px;
+                    border: 1px solid transparent;
+                    .fas{
+                        color: $bgcolor;
+                        margin-right: 7px;
+                    }
+                    &:hover{
+                        background-color: #013ecb;
+                    }
+                }
+            }
+            &-userlist{
+                display: flex;
+                height: 100%;
+                width: 100%;
+                flex-direction: column;
+                overflow: auto;
+                .user{
+                    height: 81px;
+                    width: 100%;
+                    border-bottom: 1px solid $message-border;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 25px 50px;
+                    cursor: pointer;
+                    &-details{
+                        display: flex;
+                        align-items: center;
+                        img{
+                            height: 45px;
+                            width: 45px;
+                            object-fit: cover;
+                            border-radius: 50%;
+                            margin-right: 12px;
+                        }
+                        p{
+                            font-weight: 700;
+                            font-size: 14px;
+                            color: $text-primary;
+                        }
+                    }
+                    span{
+                        font-size: 12px;
+                        padding-right: 10px;
+                        font-weight: 400;
+                        a{
+                            color: $icon-clr;
+                        }
+                    }   
+                }
+            }
+        }
+    }
+}
+
+
+
+
+// Message Css Stylesheet here
+
+.messaging-box{
+    width: 900px;
+    height: 570px;
+    background-color: $bgcolor;
+    box-shadow: $shadow-lg;
+    margin: 28px auto 0px;
+    border: 2px solid $message-border;
+    border-radius: 6px;
+    display: flex;
+    &-right{
+        height: 100%;
+        width: 100%;        
+        &-headerbar{
+            height: 81px;
+            width: 100%;
+            border-bottom: 2px solid $message-border;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            a{
+                .fas{
+                    color: $icon-clr;
+                    margin-right: 50px;
+                }
+            }
+            img{
+                height: 45px;
+                width: 45px;
+                object-fit: cover;
+                margin-right: 12px;
+                border-radius: 50%;
+            }
+            p{
+                font-weight: 400;
+                font-size: 20px;
+                color: $button-activebg;
+                span{
+                    color: $add-clr;
+                    a{
+                        text-decoration: none;
+                        color: $add-clr;
+                    }
+                    &:hover{
+                        text-decoration: underline $add-clr;
+                    }
+                }
+            }
+        }
+        &-chats{
+            height: 400px;
+            width: 692px;
+            overflow: auto;
+            padding: 40px;
+        }
+        &-type-message{
+            height: 90px;
+            width: 100%;
+            @include flexAllCnt;
+            border-top: 2px solid $message-border;
+            input{
+                height: 40px;
+                width: 700px;
+                padding: 10px;
+                border: 2px solid $message-border;
+                &:focus{
+                    outline: none !important;
+                    border-color: $add-clr;
+                }
+            }
+        }
+    }
+}
