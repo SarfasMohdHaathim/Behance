@@ -13,7 +13,7 @@
      <!-- Header Bar Starts Here -->
      <header>
         <div class="left-nav">
-            <a href="./"><img src="/images/behance logo.svg" alt=""></a>
+            <a href="./"><img src="{% static '/images/behance logo.svg' %}" alt=""></a>
             <ul>
                 <li>For You</li>
                 <li><a href="{% url 'gallary' %}">Discover</a></li>
@@ -48,20 +48,28 @@
         </div>
         <div class="menu">
             <div class="menu-options">
-                <button>Work</button>
+                <!-- <button>Work</button>
                 <button>Livestreams</button>
                 <button>Moodboards</button>
                 <button>Appreciations</button>
-                <button>Insights</button>
-                <button>Drafts</button>
+                <!-- <button>Insights</button> -->
+                <button>Followers</button>
             </div>
+            {% for f in follow %}
+
             <div class="create-project">
+
                 <div class="add-project">
-                    <i class="fas fa-plus-circle fa-lg"></i>
+            <div><h1>{{f}}</h1>
+            <a href="{% url 'unfollow' f.following.id %}">unfollow</a></div>
+
                 </div>
-                <button>Create a Project</button>
-                <p>Get feedback, views, and appreciations. Public projects can be featured by our curators.</p>
+
+                <!-- <button>Create a Project</button>
+                <p>Get feedback, views, and appreciations. Public projects can be featured by our curators.</p> -->
             </div>
+            {% endfor %}
+
         </div>
         <div class="profile-card">
             <div class="profile-pic">
@@ -95,7 +103,11 @@
         {% endif %}
 
     
-
+<style>
+    .create-project{
+        height: 78px !important;
+    }
+</style>
 
 </body>
 </html>

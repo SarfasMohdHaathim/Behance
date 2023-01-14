@@ -21,8 +21,9 @@ def home(request):
         x.like=like
         x.save()
         print(x.like)
-    profile = Profile.objects.get(user=request.user)
-    context['profile']=profile
+    if request.user.is_authenticated:
+        profile = Profile.objects.get(user=request.user)
+        context['profile']=profile
     return render(request, 'index.html',context)
 
 

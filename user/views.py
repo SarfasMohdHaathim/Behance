@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.conf import settings
 from django.core.mail import send_mail
 from .models import *
+from post.models import *
 from .forms import *
 
 
@@ -68,7 +69,9 @@ def profile(request):
     profile=Profile.objects.get(user=request.user)
     print(profile,'000000000000000')
     name=profile.name.capitalize()
-    context={'profile':profile,'name':name}
+    follow=Follow.objects.filter(follower=profile)
+    print(follow)
+    context={'profile':profile,'name':name,'follow':follow}
     return render(request, 'profile.html',context)   
 
 
@@ -86,3 +89,24 @@ def addProfile(request):
     return render(request, 'addprofile.html',context)   
 
 
+def unfollow(request,pk):
+    print(pk,'00000000000000000000')
+    profile=Profile.objects.get(user=request.user)
+    print(profile.id)
+    d=Profile.objects.get(id=pk)
+    follow=Follow.objects.get(following=d,follower=profile).delete()
+    return redirect('profile')
+
+
+
+# def follow(request, data):
+#     print(request.user.first_name,'00000000000000000000')
+#     profile=Profile.objects.get(username=request.user.username)
+#     print(profile)
+#     follower = Profile.objects.get(id=data)
+#     try:
+#         follow = Follow.objects.create(following=profile, follower=follower)
+#     except:
+#         follow = Follow.objects.filter(following=profile, follower=follower)
+#         follow.delete()
+#     return redirect('home')
