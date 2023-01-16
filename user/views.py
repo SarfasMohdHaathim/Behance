@@ -19,12 +19,16 @@ def signup(request):
             user.username=user.username.lower()
             user.save()
             login(request,user)
-            subject = 'welcome to BEHANCE'
-            message = f'Hi {user.username}, thank you for registering in BEHANCE.'
-            email_from = settings.EMAIL_HOST_USER
-            recipient_list = [user.email]
-            send_mail( subject, message, email_from, recipient_list )
-            return redirect('home')
+            try:
+                subject = 'welcome to BEHANCE'
+                message = f'Hi {user.username}, thank you for registering in BEHANCE.'
+                email_from = settings.EMAIL_HOST_USER
+                recipient_list = [user.email]
+                send_mail( subject, message, email_from, recipient_list )
+                return redirect('home')
+            except:
+                print("email failed")
+                return redirect('home')
         else:
             print("Error")
             return redirect('signup')
