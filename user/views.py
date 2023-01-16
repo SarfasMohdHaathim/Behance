@@ -86,6 +86,8 @@ def addProfile(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
+            print(form,"0000000000")
+
             form.save()
             return redirect('profile')
 

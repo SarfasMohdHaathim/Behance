@@ -8,7 +8,7 @@ class PostForm(ModelForm):
         model = Post
         fields = ['title','des','cover','img1','img2','img3']
         labels = {
-            'title': 'Title of Post',
+            'title': 'Title',
             'des': 'Description',
             'cover': 'Cover Image ',
             'img1': 'Image 1',
